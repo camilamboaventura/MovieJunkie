@@ -9,8 +9,6 @@ const style = {
 function SeeDetailsModal(props) {
   return (
     <Modal
-      //   {...props}
-      //   className="modal"
       show={props.show}
       onHide={props.onHide}
       size="md"
@@ -33,9 +31,26 @@ function SeeDetailsModal(props) {
         </p>
       </Modal.Body>
       <Modal.Footer style={style}>
-        <Button name="toWatch" onClick={props.handleButtonModal}>To Watch</Button>
-        <Button name="waiting" onClick={props.handleButtonModal}>Waiting New Season</Button>
-        <Button name="watched" onClick={props.handleButtonModal}>Already Watched</Button>
+        {props.location !== "toWatchList" ? (
+          <Button name="toWatch" onClick={props.handleButtonModal}>
+            To Watch
+          </Button>
+        ) : null}
+        {props.location !== "waitingNewSeasonList" ? (
+          <Button name="waiting" onClick={props.handleButtonModal}>
+            Waiting New Season
+          </Button>
+        ) : null}
+        {props.location !== "watchedList" ? (
+          <Button name="watched" onClick={props.handleButtonModal}>
+            Already Watched
+          </Button>
+        ) : null}
+        {props.location !== "searchList" ? (
+          <Button name="delete" onClick={props.handleButtonModal}>
+            Delete
+          </Button>
+        ) : null}
         <Button onClick={props.onHide}>Close</Button>
       </Modal.Footer>
     </Modal>

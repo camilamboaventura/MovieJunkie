@@ -14,8 +14,9 @@ class Home extends React.Component {
     toWatchList: [],
     watchedList: [],
     waitingNewSeasonList: [],
-    currentlySelected: {},
     modalShow: false,
+    currentlySelected: {},
+    location: "",
   };
 
   handleChange = (event) => {
@@ -51,17 +52,24 @@ class Home extends React.Component {
     });
   };
 
-  handleShow = (movie) => {
+  handleShow = (movie, contentLocation) => {
     this.setState({
       modalShow: true,
       currentlySelected: { ...movie },
+      location: contentLocation,
     });
   };
 
   handleButtonModal = (event) => {
     switch (event.target.name) {
       case "toWatch":
-        if(!this.state.toWatchList.includes(this.state.currentlySelected)) {
+        let includes1 = false;
+        this.state.toWatchList.forEach((movie) => {
+          if (movie.id === this.state.currentlySelected.id) {
+            includes1 = true;
+          }
+        });
+        if (!includes1) {
           this.setState({
             toWatchList: [
               ...this.state.toWatchList,
@@ -72,7 +80,13 @@ class Home extends React.Component {
 
         break;
       case "waiting":
-        if(!this.state.waitingNewSeasonList.includes(this.state.currentlySelected)) { 
+        let includes2 = false;
+        this.state.waitingNewSeasonList.forEach((movie) => {
+          if (movie.id === this.state.currentlySelected.id) {
+            includes2 = true;
+          }
+        });
+        if (!includes2) {
           this.setState({
             waitingNewSeasonList: [
               ...this.state.waitingNewSeasonList,
@@ -80,10 +94,15 @@ class Home extends React.Component {
             ],
           });
         }
-        
         break;
       case "watched":
-        if(!this.state.watchedList.includes(this.state.currentlySelected)) {
+        let includes3 = false;
+        this.state.watchedList.forEach((movie) => {
+          if (movie.id === this.state.currentlySelected.id) {
+            includes3 = true;
+          }
+        });
+        if (!includes3) {
           this.setState({
             watchedList: [
               ...this.state.watchedList,
@@ -91,13 +110,18 @@ class Home extends React.Component {
             ],
           });
         }
-     
+        break;
+      case "delete":
+        this.handleDelete();
+        console.log(this.state.location);
+        console.log(this.state.currentlySelected.id);
         break;
     }
   };
 
+  handleDelete = () => {};
+
   render() {
-    console.log(this.state)
     return (
       <div className="container-fluid">
         <h3>Search</h3>
@@ -131,26 +155,31 @@ class Home extends React.Component {
         </div> */}
         <div className="container-fluid movie-app">
           <MoviesList
+            location="searchList"
             contentList={this.state.seriesList}
             handleShow={this.handleShow}
             listTitle="Series"
           />
           <MoviesList
+            location="searchList"
             contentList={this.state.moviesList}
             handleShow={this.handleShow}
             listTitle="Movies"
           />
           <MoviesList
+            location="toWatchList"
             contentList={this.state.toWatchList}
             handleShow={this.handleShow}
             listTitle="To Watch"
           />
           <MoviesList
+            location="waitingNewSeasonList"
             contentList={this.state.waitingNewSeasonList}
             handleShow={this.handleShow}
             listTitle="Waiting New Season"
           />
           <MoviesList
+            location="watchedList"
             contentList={this.state.watchedList}
             handleShow={this.handleShow}
             listTitle="Watched"
@@ -161,6 +190,7 @@ class Home extends React.Component {
           show={this.state.modalShow}
           onHide={() => this.handleClose()}
           currentlySelected={this.state.currentlySelected}
+          location={this.state.location}
           handleButtonModal={this.handleButtonModal}
         />
       </div>
