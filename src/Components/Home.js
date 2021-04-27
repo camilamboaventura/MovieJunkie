@@ -14,8 +14,9 @@ class Home extends React.Component {
     toWatchList: [],
     watchedList: [],
     waitingNewSeasonList: [],
-    currentlySelected: {},
     modalShow: false,
+    currentlySelected: {},
+    location: "",
   };
 
   handleChange = (event) => {
@@ -51,10 +52,11 @@ class Home extends React.Component {
     });
   };
 
-  handleShow = (movie) => {
+  handleShow = (movie, contentLocation) => {
     this.setState({
       modalShow: true,
       currentlySelected: { ...movie },
+      location: contentLocation,
     });
   };
 
@@ -109,8 +111,15 @@ class Home extends React.Component {
           });
         }
         break;
+      case "delete":
+        this.handleDelete();
+        console.log(this.state.location);
+        console.log(this.state.currentlySelected.id);
+        break;
     }
   };
+
+  handleDelete = () => {};
 
   render() {
     return (
@@ -146,26 +155,31 @@ class Home extends React.Component {
         </div> */}
         <div className="container-fluid movie-app">
           <MoviesList
+            location="searchList"
             contentList={this.state.seriesList}
             handleShow={this.handleShow}
             listTitle="Series"
           />
           <MoviesList
+            location="searchList"
             contentList={this.state.moviesList}
             handleShow={this.handleShow}
             listTitle="Movies"
           />
           <MoviesList
+            location="toWatchList"
             contentList={this.state.toWatchList}
             handleShow={this.handleShow}
             listTitle="To Watch"
           />
           <MoviesList
+            location="waitingNewSeasonList"
             contentList={this.state.waitingNewSeasonList}
             handleShow={this.handleShow}
             listTitle="Waiting New Season"
           />
           <MoviesList
+            location="watchedList"
             contentList={this.state.watchedList}
             handleShow={this.handleShow}
             listTitle="Watched"
@@ -176,6 +190,7 @@ class Home extends React.Component {
           show={this.state.modalShow}
           onHide={() => this.handleClose()}
           currentlySelected={this.state.currentlySelected}
+          location={this.state.location}
           handleButtonModal={this.handleButtonModal}
         />
       </div>

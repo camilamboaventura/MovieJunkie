@@ -12,7 +12,7 @@ function MoviesList(props) {
                 return (
                   <div
                     className="image-container m-3"
-                    onClick={() => props.handleShow(movie)}
+                    onClick={() => props.handleShow(movie, props.location)}
                     key={movie.id}
                   >
                     <img
