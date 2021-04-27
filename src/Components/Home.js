@@ -61,7 +61,13 @@ class Home extends React.Component {
   handleButtonModal = (event) => {
     switch (event.target.name) {
       case "toWatch":
-        if(!this.state.toWatchList.includes(this.state.currentlySelected)) {
+        let includes1 = false;
+        this.state.toWatchList.forEach((movie) => {
+          if (movie.id === this.state.currentlySelected.id) {
+            includes1 = true;
+          }
+        });
+        if (!includes1) {
           this.setState({
             toWatchList: [
               ...this.state.toWatchList,
@@ -72,7 +78,13 @@ class Home extends React.Component {
 
         break;
       case "waiting":
-        if(!this.state.waitingNewSeasonList.includes(this.state.currentlySelected)) { 
+        let includes2 = false;
+        this.state.waitingNewSeasonList.forEach((movie) => {
+          if (movie.id === this.state.currentlySelected.id) {
+            includes2 = true;
+          }
+        });
+        if (!includes2) {
           this.setState({
             waitingNewSeasonList: [
               ...this.state.waitingNewSeasonList,
@@ -80,10 +92,15 @@ class Home extends React.Component {
             ],
           });
         }
-        
         break;
       case "watched":
-        if(!this.state.watchedList.includes(this.state.currentlySelected)) {
+        let includes3 = false;
+        this.state.watchedList.forEach((movie) => {
+          if (movie.id === this.state.currentlySelected.id) {
+            includes3 = true;
+          }
+        });
+        if (!includes3) {
           this.setState({
             watchedList: [
               ...this.state.watchedList,
@@ -91,13 +108,11 @@ class Home extends React.Component {
             ],
           });
         }
-     
         break;
     }
   };
 
   render() {
-    console.log(this.state)
     return (
       <div className="container-fluid">
         <h3>Search</h3>
