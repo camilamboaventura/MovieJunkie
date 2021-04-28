@@ -44,5 +44,29 @@ body {
 }
 
 .homeLogo {
-  font-size:  2rem;
+  font-size: 2rem;
+}
+
+.logo {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 50px;
+  background-image: url("./Images/movie-bg.jpeg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.logo-picture {
+  height: 250px;
+  margin-bottom: 50px;
+}
+
+.logo-navbar {
+  height: 50px;
 }

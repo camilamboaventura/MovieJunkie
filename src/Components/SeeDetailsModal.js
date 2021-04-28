@@ -16,47 +16,86 @@ function SeeDetailsModal(props) {
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
-      <Modal.Header closeButton style={style}>
+      <Modal.Header
+        closeButton
+        style={{
+          padding: "0",
+        }}
+      >
         <Modal.Title id="contained-modal-title-vcenter">
-          {props.currentlySelected.name
-            ? props.currentlySelected.name
-            : props.currentlySelected.title}
+          {props.currentlySelected.backdrop_path ? (
+            <img
+              src={`https://image.tmdb.org/t/p/w500${props.currentlySelected.backdrop_path}`}
+              size="md"
+            />
+          ) : null}
         </Modal.Title>
       </Modal.Header>
       <Modal.Body style={style}>
-        <h4>Centered Modal</h4>
-        <p>
-          Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-          dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-          consectetur ac, vestibulum at eros.
-        </p>
+        <h3>
+          {props.currentlySelected.name
+            ? props.currentlySelected.name
+            : props.currentlySelected.title}
+        </h3>
+        <p>{props.currentlySelected.overview}</p>
       </Modal.Body>
       <Modal.Footer style={style}>
         {props.location !== "toWatchList" ? (
-          <Button name="toWatch" onClick={props.handleButtonModal}>
+          <button
+            type="button"
+            name="toWatch"
+            className="btn btn-success"
+            style={{ fontSize: "12px" }}
+            onClick={props.handleButtonModal}
+          >
             To Watch
-          </Button>
+          </button>
         ) : null}
         {props.location !== "waitingNewSeasonList" ? (
-          <Button name="waiting" onClick={props.handleButtonModal}>
+          <button
+            type="button"
+            name="waiting"
+            className="btn btn-warning"
+            style={{ fontSize: "12px" }}
+            onClick={props.handleButtonModal}
+          >
             Waiting New Season
-          </Button>
+          </button>
         ) : null}
         {props.location !== "watchedList" ? (
-          <Button name="watched" onClick={props.handleButtonModal}>
-            Already Watched
-          </Button>
+          <button
+            type="button"
+            name="watched"
+            className="btn btn-primary"
+            style={{ fontSize: "12px" }}
+            onClick={props.handleButtonModal}
+          >
+            Already watched
+          </button>
         ) : null}
         {props.location !== "searchSeries" &&
         props.location !== "searchMovies" ? (
-          <Button name="delete" onClick={props.handleButtonModal}>
+          <button
+            type="button"
+            name="delete"
+            className="btn btn-danger"
+            style={{ fontSize: "12px" }}
+            onClick={props.handleButtonModal}
+          >
             Delete
-          </Button>
+          </button>
         ) : null}
         {props.location === "searchMovies" ||
         props.location === "searchSeries" ? (
           <Link to={`/details/${props.location}/${props.currentlySelected.id}`}>
-            <Button onClick={props.onHide}>More info</Button>
+            <button
+              type="button"
+              className="btn btn-light"
+              style={{ fontSize: "12px" }}
+              onClick={props.onHide}
+            >
+              More Info
+            </button>
           </Link>
         ) : null}
       </Modal.Footer>
