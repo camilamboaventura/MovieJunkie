@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 
-import MoviesList from "./MoviesList";
+import MediasList from "./MediasList";
 import SearchInput from "./SearchInput";
 import SeeDetailsModal from "./SeeDetailsModal";
 
@@ -10,6 +10,7 @@ class Home extends React.Component {
     search: "",
     seriesList: [],
     moviesList: [],
+    genericList: [],
     toWatchList: [],
     watchedList: [],
     waitingNewSeasonList: [],
@@ -148,6 +149,7 @@ class Home extends React.Component {
   };
 
   render() {
+    console.log(this.state.currentlySelected);
     return (
       <div className="container-fluid">
         <h3>Search</h3>
@@ -160,55 +162,36 @@ class Home extends React.Component {
           handleChange={this.handleChange}
           handleClick={this.handleSubmit}
         />
-        {/* <div className="input-group mb-3">
-          <input
-            type="text"
-            className="form-control"
-            placeholder="Search title"
-            aria-label="Text input search"
-            name="search"
-            onChange={this.handleChange}
-            value={this.state.search}
-          />
-          <button
-            className="btn btn-outline-secondary"
-            type="button"
-            id="searchSubmitButton"
-            onClick={this.handleSubmit}
-          >
-            Submit
-          </button>
-        </div> */}
         <div className="container-fluid movie-app">
-          <MoviesList
-            location="searchList"
+          <MediasList
+            location="searchSeries"
             contentList={this.state.seriesList}
             handleShow={this.handleShow}
             listTitle="Series"
           />
-          <MoviesList
-            location="searchList"
+          <MediasList
+            location="searchMovies"
             contentList={this.state.moviesList}
             handleShow={this.handleShow}
-            listTitle="Movies"
+            listTitle="Movies and Documentaries"
           />
-          <MoviesList
+          <MediasList
             location="toWatchList"
             contentList={this.state.toWatchList}
             handleShow={this.handleShow}
-            listTitle="To Watch"
+            listTitle="Want To Watch"
           />
-          <MoviesList
+          <MediasList
             location="waitingNewSeasonList"
             contentList={this.state.waitingNewSeasonList}
             handleShow={this.handleShow}
             listTitle="Waiting New Season"
           />
-          <MoviesList
+          <MediasList
             location="watchedList"
             contentList={this.state.watchedList}
             handleShow={this.handleShow}
-            listTitle="Watched"
+            listTitle="Already Watched"
           />
         </div>
         {/* Modal */}

@@ -1,6 +1,6 @@
 import React from "react";
 import { Modal, Button } from "react-bootstrap";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 
 const style = {
   backgroundColor: "#141414",
@@ -47,14 +47,18 @@ function SeeDetailsModal(props) {
             Already Watched
           </Button>
         ) : null}
-        {props.location !== "searchList" ? (
+        {props.location !== "searchSeries" &&
+        props.location !== "searchMovies" ? (
           <Button name="delete" onClick={props.handleButtonModal}>
             Delete
           </Button>
         ) : null}
-        <Link to={`/details/${props.currentlySelected.popularity}/${props.currentlySelected.id}`}> 
-        <Button onClick={props.onHide}>More info</Button>
-        </Link>
+        {props.location === "searchMovies" ||
+        props.location === "searchSeries" ? (
+          <Link to={`/details/${props.location}/${props.currentlySelected.id}`}>
+            <Button onClick={props.onHide}>More info</Button>
+          </Link>
+        ) : null}
       </Modal.Footer>
     </Modal>
   );

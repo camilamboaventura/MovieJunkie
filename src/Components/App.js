@@ -1,10 +1,9 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Route } from "react-router-dom";
 
-
 import Navbar from "./Navbar";
 import Home from "./Home";
-import SeeMoreDetails from "./SeeMoreDetails"
+import SeeMoreDetails from "./SeeMoreDetails";
 
 function App() {
   return (
@@ -12,7 +11,7 @@ function App() {
       <BrowserRouter>
         <Navbar />
         <Route exact path="/" component={Home} />
-        <Route path="/details/:name/:id" component={SeeMoreDetails}/>
+        <Route path="/details/:location/:id" component={SeeMoreDetails} />
       </BrowserRouter>
     </div>
   );
