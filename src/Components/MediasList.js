@@ -1,6 +1,6 @@
 import React from "react";
 
-function MoviesList(props) {
+function MediasList(props) {
   if (props.contentList.length !== 0) {
     return (
       <div>
@@ -39,4 +39,4 @@ function MoviesList(props) {
   }
 }
 
-export default MoviesList;
+export default MediasList;
