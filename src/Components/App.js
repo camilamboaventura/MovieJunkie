@@ -12,7 +12,7 @@ function App() {
       <BrowserRouter>
         <Navbar />
         <Route exact path="/" component={Home} />
-        <Route path="/details/:type/:id" component={SeeMoreDetails}/>
+        <Route path="/details/:name/:id" component={SeeMoreDetails}/>
       </BrowserRouter>
     </div>
   );
