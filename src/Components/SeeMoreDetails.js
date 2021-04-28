@@ -26,13 +26,43 @@ class SeeMoreDetails extends Component {
   };
 
   render() {
+    console.log("Show media details: ");
     console.log(this.state.mediaDetails);
     return (
-      <div>
-        title:{" "}
-        {this.state.mediaDetails.title
-          ? this.state.mediaDetails.title
-          : this.state.mediaDetails.name}
+      <div className="container mt-5">
+        <div className="row">
+          <div className="col-8">
+            <h3>
+              <strong>
+                {this.state.mediaDetails.title
+                  ? this.state.mediaDetails.title
+                  : this.state.mediaDetails.name}
+              </strong>
+            </h3>
+            <p className="">{this.state.mediaDetails.overview}</p>
+            <div className="container">
+              <div className="row">
+                <div className="col-2">Genre</div>
+                <div className="d-inline-flex col-2">
+                  {this.state.mediaDetails.genres !== undefined
+                    ? this.state.mediaDetails.genres.map((genre) => {
+                        return <span key={genre.id}>{genre.name}  </span>;
+                      })
+                    : null}
+                </div>
+              </div>
+              <div className="row"></div>
+              <div className="row"></div>
+            </div>
+          </div>
+          <div className="col-4">
+            <img
+              src={`https://image.tmdb.org/t/p/w500${this.state.mediaDetails.poster_path}`}
+              style={{ height: "500px" }}
+              alt="poster"
+            ></img>
+          </div>
+        </div>
       </div>
     );
   }
