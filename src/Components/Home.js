@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { Button } from "react-bootstrap";
+import { Button, ResponsiveEmbed } from "react-bootstrap";
 
 import MoviesList from "./MoviesList";
 import SearchInput from "./SearchInput";
@@ -15,7 +15,7 @@ class Home extends React.Component {
     watchedList: [],
     waitingNewSeasonList: [],
     modalShow: false,
-    currentlySelected: {},
+    currentlySelected: { id: 0 },
     location: "",
   };
 
@@ -36,6 +36,7 @@ class Home extends React.Component {
         this.setState({
           seriesList: [...seriesResponse.data.results],
           moviesList: [...moviesResponse.data.results],
+          search: "",
         });
       } else {
         return null;
@@ -61,65 +62,91 @@ class Home extends React.Component {
   };
 
   handleButtonModal = (event) => {
+    if (this.state.location !== "searchList") {
+      this.handleDelete();
+    }
+    let includes = false;
     switch (event.target.name) {
       case "toWatch":
-        let includes1 = false;
         this.state.toWatchList.forEach((movie) => {
           if (movie.id === this.state.currentlySelected.id) {
-            includes1 = true;
+            includes = true;
           }
         });
-        if (!includes1) {
+        if (!includes) {
           this.setState({
             toWatchList: [
               ...this.state.toWatchList,
               this.state.currentlySelected,
             ],
           });
+          includes = false;
         }
-
+        this.handleClose();
         break;
       case "waiting":
-        let includes2 = false;
         this.state.waitingNewSeasonList.forEach((movie) => {
           if (movie.id === this.state.currentlySelected.id) {
-            includes2 = true;
+            includes = true;
           }
         });
-        if (!includes2) {
+        if (!includes) {
           this.setState({
             waitingNewSeasonList: [
               ...this.state.waitingNewSeasonList,
               this.state.currentlySelected,
             ],
           });
+          includes = false;
         }
+        this.handleClose();
         break;
       case "watched":
-        let includes3 = false;
         this.state.watchedList.forEach((movie) => {
           if (movie.id === this.state.currentlySelected.id) {
-            includes3 = true;
+            includes = true;
           }
         });
-        if (!includes3) {
+        if (!includes) {
           this.setState({
             watchedList: [
               ...this.state.watchedList,
               this.state.currentlySelected,
             ],
           });
+          includes = false;
         }
+        this.handleClose();
         break;
-      case "delete":
-        this.handleDelete();
-        console.log(this.state.location);
-        console.log(this.state.currentlySelected.id);
-        break;
+      // case "delete":
+      //   this.handleDelete();
+      //   break;
     }
   };
 
-  handleDelete = () => {};
+  handleDelete = () => {
+    switch (this.state.location) {
+      case "toWatchList":
+        let newToWatchList = this.state.toWatchList.filter(
+          (movie) => movie.id !== this.state.currentlySelected.id
+        );
+        this.setState({ toWatchList: newToWatchList });
+        break;
+      case "watchedList":
+        let newWatchedList = this.state.watchedList.filter(
+          (movie) => movie.id !== this.state.currentlySelected.id
+        );
+        this.setState({ watchedList: newWatchedList });
+        break;
+      case "waitingNewSeasonList":
+        let newWaitingNewSeasonList = this.state.waitingNewSeasonList.filter(
+          (movie) => movie.id !== this.state.currentlySelected.id
+        );
+        this.setState({ waitingNewSeasonList: newWaitingNewSeasonList });
+        break;
+    }
+    this.handleClose();
+  };
 
   render() {
     return (
