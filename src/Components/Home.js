@@ -5,9 +5,11 @@ import MediasList from "./MediasList";
 import SearchInput from "./SearchInput";
 import SeeDetailsModal from "./SeeDetailsModal";
 
+import logoPicture from "../Images/Logo.png";
+
 class Home extends React.Component {
   state = {
-    search: "",
+    search: "vikings",
     seriesList: [],
     moviesList: [],
     genericList: [],
@@ -17,6 +19,10 @@ class Home extends React.Component {
     modalShow: false,
     currentlySelected: {},
     location: "",
+  };
+
+  componentDidMount = () => {
+    this.handleSubmit();
   };
 
   handleChange = (event) => {
@@ -149,19 +155,20 @@ class Home extends React.Component {
   };
 
   render() {
-    console.log(this.state.currentlySelected);
     return (
       <div className="container-fluid">
-        <h3>Search</h3>
-        <SearchInput
-          type="text"
-          placeHolder="Search title"
-          ariaLabel="Text input search"
-          name="search"
-          value={this.state.search}
-          handleChange={this.handleChange}
-          handleClick={this.handleSubmit}
-        />
+        <div className="logo">
+          <img src={logoPicture} className="logo-picture" alt="Logo" />
+          <SearchInput
+            type="text"
+            placeHolder="Search title"
+            ariaLabel="Text input search"
+            name="search"
+            value={this.state.search}
+            handleChange={this.handleChange}
+            handleClick={this.handleSubmit}
+          />
+        </div>
         <div className="container-fluid movie-app">
           <MediasList
             location="searchSeries"
