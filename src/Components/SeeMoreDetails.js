@@ -8,7 +8,7 @@ class SeeMoreDetails extends Component {
   };
 
   componentDidMount = async () => {
-      console.log(this.props.match.params.id)
+      
     try {
       const moviesResponse = await axios.get(
         `https://api.themoviedb.org/3/movie/${this.props.match.params.id}?api_key=125c6992a7675d6c3e35696ea71a8c59`
@@ -16,10 +16,14 @@ class SeeMoreDetails extends Component {
       const seriesResponse = await axios.get(
         `https://api.themoviedb.org/3/tv/${this.props.match.params.id}?api_key=125c6992a7675d6c3e35696ea71a8c59`
       );
-      const finalResponse = moviesResponse ? moviesResponse : seriesResponse
-      console.log(finalResponse.data)
-      this.setState({ mediaDetails: { ...finalResponse.data } });
+      const finalResponse = {}
+      console.log(seriesResponse)
+      console.log(moviesResponse)
+    //   const finalResponse = moviesResponse ? moviesResponse : seriesResponse
+    //   console.log(finalResponse.data)
+    //   this.setState({ mediaDetails: { ...finalResponse.data } });
     } catch (err) {
+        console.log("oi")
       console.error(err);
     }
   };

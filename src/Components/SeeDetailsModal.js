@@ -52,7 +52,7 @@ function SeeDetailsModal(props) {
             Delete
           </Button>
         ) : null}
-        <Link to={`/details/${props.currentlySelected.type}/${props.currentlySelected.id}`}> 
+        <Link to={`/details/${props.currentlySelected.popularity}/${props.currentlySelected.id}`}> 
         <Button onClick={props.onHide}>More info</Button>
         </Link>
       </Modal.Footer>
