@@ -1,5 +1,6 @@
 import React from "react";
 import { Modal, Button } from "react-bootstrap";
+import { Link } from "react-router-dom"
 
 const style = {
   backgroundColor: "#141414",
@@ -51,7 +52,9 @@ function SeeDetailsModal(props) {
             Delete
           </Button>
         ) : null}
-        <Button onClick={props.onHide}>Close</Button>
+        <Link to={`/details/${props.currentlySelected.type}/${props.currentlySelected.id}`}> 
+        <Button onClick={props.onHide}>More info</Button>
+        </Link>
       </Modal.Footer>
     </Modal>
   );

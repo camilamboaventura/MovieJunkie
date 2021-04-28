@@ -6,9 +6,9 @@ function Navbar() {
     <nav style={{ backgroundColor: "#141414" }} className="navbar navbar-light">
       <div className="container-fluid">
         <Link className="navbar-brand" to="/" style={{ color: "white" }}>
-          <i className="fas fa-film"> Home</i>
+        <i className="fas fa-video homeLogo"> Home </i>
         </Link>
-        <div className="navbar-end">
+        {/* <div className="navbar-end">
           <div className="navbar-item">
             <div className="field is-grouped">
               <p className="control">
@@ -23,7 +23,7 @@ function Navbar() {
               </p>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </nav>
   );
