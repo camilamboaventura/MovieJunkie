@@ -1,6 +1,5 @@
 import React from "react";
 import axios from "axios";
-import { Button, ResponsiveEmbed } from "react-bootstrap";
 
 import MoviesList from "./MoviesList";
 import SearchInput from "./SearchInput";
@@ -15,7 +14,7 @@ class Home extends React.Component {
     watchedList: [],
     waitingNewSeasonList: [],
     modalShow: false,
-    currentlySelected: { id: 0 },
+    currentlySelected: {},
     location: "",
   };
 
