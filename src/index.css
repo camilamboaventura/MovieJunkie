@@ -84,8 +84,14 @@ body {
 
 .image {
   border: 3px solid white;
+  border-radius: 5px;
 }
 
 .info {
   margin-bottom: 10px;
+}
+
+h3 {
+  margin-bottom: 30px;
+  margin-top: 30px;
 }
