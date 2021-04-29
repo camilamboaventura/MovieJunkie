@@ -1,11 +1,15 @@
 import { Component } from "react";
 import axios from "axios";
 
+// When the user clicks to see more details through one of the modal buttons, the Browser Router will idenfy the modification in the url and redirect the user to see this component.
+// Show more details that weren't displayed in the modal.
+
 class SeeMoreDetails extends Component {
   state = {
     mediaDetails: {},
   };
 
+  // In the first boot will send a request to the API accordingly with the params inherited from the Route path stablished
   componentDidMount = async () => {
     try {
       if (this.props.match.params.location === "searchMovies") {
