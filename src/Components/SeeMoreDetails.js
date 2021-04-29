@@ -131,13 +131,13 @@ class SeeMoreDetails extends Component {
             {this.state.cast
               .filter((c) => c.profile_path !== null)
               .slice(0, 7)
-              .map((character) => {
+              .map((character, idx) => {
                 return (
-                  <div className="card" style={{ width: "10rem" }}>
+                  <div key={idx} className="card" style={{ width: "10rem" }}>
                     <img
                       src={`https://image.tmdb.org/t/p/w500${character.profile_path}`}
                       className="card-img-top"
-                      alt="cast image"
+                      alt="cast"
                     />
                     <div className="card-body">
                       <p className="card-text" style={{ color: "black" }}>
