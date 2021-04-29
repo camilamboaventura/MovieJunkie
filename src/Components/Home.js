@@ -124,6 +124,8 @@ class Home extends React.Component {
         }
         this.handleClose();
         break;
+      default:
+        break;
     }
   };
 
@@ -146,6 +148,8 @@ class Home extends React.Component {
           (movie) => movie.id !== this.state.currentlySelected.id
         );
         this.setState({ waitingNewSeasonList: newWaitingNewSeasonList });
+        break;
+      default:
         break;
     }
     this.handleClose();
@@ -199,6 +203,7 @@ class Home extends React.Component {
           />
         </div>
         {/* Modal */}
+
         <SeeDetailsModal
           show={this.state.modalShow}
           onHide={() => this.handleClose()}

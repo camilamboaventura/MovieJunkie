@@ -8,7 +8,6 @@ class SeeMoreDetails extends Component {
 
   componentDidMount = async () => {
     try {
-      console.log(this.props.match.params);
       if (this.props.match.params.location === "searchMovies") {
         const moviesResponse = await axios.get(
           `https://api.themoviedb.org/3/movie/${this.props.match.params.id}?api_key=125c6992a7675d6c3e35696ea71a8c59`
@@ -26,7 +25,6 @@ class SeeMoreDetails extends Component {
   };
 
   render() {
-    console.log(this.state.mediaDetails);
     return (
       <div className="container mt-5">
         <div className="row d-flex justify-content-evenly">

@@ -1,5 +1,5 @@
 import React from "react";
-import { Modal, Button } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 const style = {
@@ -27,6 +27,7 @@ function SeeDetailsModal(props) {
             <img
               src={`https://image.tmdb.org/t/p/w500${props.currentlySelected.backdrop_path}`}
               size="md"
+              alt="Media poster"
             />
           ) : null}
         </Modal.Title>
