@@ -28,11 +28,78 @@ class SeeMoreDetails extends Component {
   render() {
     console.log(this.state.mediaDetails);
     return (
-      <div>
-        title:{" "}
-        {this.state.mediaDetails.title
-          ? this.state.mediaDetails.title
-          : this.state.mediaDetails.name}
+      <div className="container mt-5">
+        <div className="row d-flex justify-content-evenly">
+          <div className="col-8">
+            <div>
+              <h3 className="title">
+                <strong>
+                  {this.state.mediaDetails.title
+                    ? this.state.mediaDetails.title
+                    : this.state.mediaDetails.name}
+                </strong>
+              </h3>
+              {this.state.mediaDetails.tagline !== undefined ?
+              ( <span className="tagline">
+              {this.state.mediaDetails.tagline}
+              </span> ) : null}
+            </div> 
+
+            <p className="overview">{this.state.mediaDetails.overview}</p>
+
+            <div className="container">
+              <div className="row">
+                <div className="col-3">Genre</div>
+                <div className="col-3">
+                  <ul className="list-unstyled">
+                    {this.state.mediaDetails.genres !== undefined
+                      ? this.state.mediaDetails.genres.map((genre) => {
+                          return <li key={genre.id}>{genre.name}</li>;
+                        })
+                      : null}
+                  </ul>
+                </div>
+              </div>
+              {this.state.mediaDetails.runtime !== undefined ? (
+                <div className="row info">
+                  <div className="col-3">Duration</div>
+                  <div className="col-3">
+                    {this.state.mediaDetails.runtime}{" "}
+                    min
+                  </div>
+                </div>
+              ) : null}
+              <div className="row info">
+                <div className="col-3">Movie score</div>
+                <div className="col-3">
+                  ★ {this.state.mediaDetails.vote_average}
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-3">Audio languages</div>
+                <div className=" col-3">
+                  <ul className="list-unstyled">
+                    {this.state.mediaDetails.spoken_languages !== undefined
+                      ? this.state.mediaDetails.spoken_languages.map(
+                          (language) => {
+                            return <li> {language.english_name} </li>;
+                          }
+                        )
+                      : null}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="col-4">
+            <img
+              className="image"
+              src={`https://image.tmdb.org/t/p/w500${this.state.mediaDetails.poster_path}`}
+              style={{ height: "600px" }}
+              alt="poster"
+            ></img>
+          </div>
+        </div>
       </div>
     );
   }
