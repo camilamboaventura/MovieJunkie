@@ -1,5 +1,5 @@
 import React from "react";
-import { Modal, Button } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 const style = {
@@ -7,6 +7,8 @@ const style = {
   color: "white",
 };
 
+// MODAL COMPONENT //
+// The heart of the application. Contains all the necessary buttons to provide the media management. As a  functional component it peforms all the asked actions by lifting the state up
 function SeeDetailsModal(props) {
   return (
     <Modal
@@ -27,6 +29,7 @@ function SeeDetailsModal(props) {
             <img
               src={`https://image.tmdb.org/t/p/w500${props.currentlySelected.backdrop_path}`}
               size="md"
+              alt="Media poster"
             />
           ) : null}
         </Modal.Title>
@@ -39,6 +42,7 @@ function SeeDetailsModal(props) {
         </h3>
         <p>{props.currentlySelected.overview}</p>
       </Modal.Body>
+      {/* The modal footer holds all the buttons and check the status in which whichone of them should be shown*/}
       <Modal.Footer style={style}>
         {props.location !== "toWatchList" ? (
           <button
@@ -85,6 +89,7 @@ function SeeDetailsModal(props) {
             Delete
           </button>
         ) : null}
+        {/* As a Link, the more info button changes the URL, redirecting the user to see the component seeMoreInfoDetails */}
         {props.location === "searchMovies" ||
         props.location === "searchSeries" ? (
           <Link to={`/details/${props.location}/${props.currentlySelected.id}`}>

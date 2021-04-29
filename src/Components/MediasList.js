@@ -1,5 +1,6 @@
 import React from "react";
 
+// As a functional component it receives through props the list of the content to be rendered
 function MediasList(props) {
   if (props.contentList.length !== 0) {
     return (

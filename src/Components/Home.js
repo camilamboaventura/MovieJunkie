@@ -21,14 +21,17 @@ class Home extends React.Component {
     location: "",
   };
 
+  //Provides the first request from the API in the first boot of the app
   componentDidMount = () => {
     this.handleSubmit();
   };
 
+  //Triggered by modifications in the search input, this method provides that the attribute search from the state keeps lined up with the value from the search input
   handleChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
   };
 
+  // Whenever the user click the submit button, it will send a request to the API containing the title typed in the search input. It will also set the seriesList and moviesList from the state in order to match with the updated response from the API.
   handleSubmit = async () => {
     try {
       if (this.state.search) {
@@ -52,13 +55,7 @@ class Home extends React.Component {
     }
   };
 
-  handleClose = () => {
-    this.setState({
-      modalShow: false,
-      currentlySelected: {},
-    });
-  };
-
+  // Whenever a media is clicked this method will be called to show the modal containing the media's info and buttons for media management
   handleShow = (movie, contentLocation) => {
     this.setState({
       modalShow: true,
@@ -67,6 +64,15 @@ class Home extends React.Component {
     });
   };
 
+  //Close the modal and reset the currently selected item to an empty object
+  handleClose = () => {
+    this.setState({
+      modalShow: false,
+      currentlySelected: {},
+    });
+  };
+
+  // Whenever any of the 5 possibles buttons of the modal is clicked, this method will be called and perform the due action, removing the item from the previous location and sending it to the asked one.
   handleButtonModal = (event) => {
     if (this.state.location !== "searchList") {
       this.handleDelete();
@@ -124,10 +130,14 @@ class Home extends React.Component {
         }
         this.handleClose();
         break;
+      default:
+        break;
     }
   };
 
+  // Whenever the button delete is clicked, this method will be called.
   handleDelete = () => {
+    // The switch bellow check the location of the media clicked and remove this from the respective list
     switch (this.state.location) {
       case "toWatchList":
         let newToWatchList = this.state.toWatchList.filter(
@@ -147,6 +157,8 @@ class Home extends React.Component {
         );
         this.setState({ waitingNewSeasonList: newWaitingNewSeasonList });
         break;
+      default:
+        break;
     }
     this.handleClose();
   };
@@ -156,6 +168,7 @@ class Home extends React.Component {
       <div className="container-fluid">
         <div className="logo">
           <img src={logoPicture} className="logo-picture" alt="Logo" />
+          {/* Search Input */}
           <SearchInput
             type="text"
             placeHolder="Search title"
@@ -166,31 +179,37 @@ class Home extends React.Component {
             handleClick={this.handleSubmit}
           />
         </div>
+        {/* Contains all the lists shown in the home-screen */}
         <div className="container-fluid movie-app">
+          {/* Series found List */}
           <MediasList
             location="searchSeries"
             contentList={this.state.seriesList}
             handleShow={this.handleShow}
             listTitle="Series"
           />
+          {/* Movies found List */}
           <MediasList
             location="searchMovies"
             contentList={this.state.moviesList}
             handleShow={this.handleShow}
             listTitle="Movies and Documentaries"
           />
+          {/* Want to watch List */}
           <MediasList
             location="toWatchList"
             contentList={this.state.toWatchList}
             handleShow={this.handleShow}
             listTitle="Want To Watch"
           />
+          {/* Waiting new season List */}
           <MediasList
             location="waitingNewSeasonList"
             contentList={this.state.waitingNewSeasonList}
             handleShow={this.handleShow}
             listTitle="Waiting New Season"
           />
+          {/* Already watched List */}
           <MediasList
             location="watchedList"
             contentList={this.state.watchedList}
@@ -198,7 +217,7 @@ class Home extends React.Component {
             listTitle="Already Watched"
           />
         </div>
-        {/* Modal */}
+        {/* See details Modal */}
         <SeeDetailsModal
           show={this.state.modalShow}
           onHide={() => this.handleClose()}
