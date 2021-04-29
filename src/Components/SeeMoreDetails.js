@@ -7,8 +7,8 @@ class SeeMoreDetails extends Component {
   };
 
   componentDidMount = async () => {
-    console.log(this.props.match.params);
     try {
+      console.log(this.props.match.params);
       if (this.props.match.params.location === "searchMovies") {
         const moviesResponse = await axios.get(
           `https://api.themoviedb.org/3/movie/${this.props.match.params.id}?api_key=125c6992a7675d6c3e35696ea71a8c59`
@@ -39,11 +39,12 @@ class SeeMoreDetails extends Component {
                     : this.state.mediaDetails.name}
                 </strong>
               </h3>
-              {this.state.mediaDetails.tagline !== undefined ?
-              ( <span className="tagline">
-              {this.state.mediaDetails.tagline}
-              </span> ) : null}
-            </div> 
+              {this.state.mediaDetails.tagline !== undefined ? (
+                <span className="tagline">
+                  {this.state.mediaDetails.tagline}
+                </span>
+              ) : null}
+            </div>
 
             <p className="overview">{this.state.mediaDetails.overview}</p>
 
@@ -64,8 +65,7 @@ class SeeMoreDetails extends Component {
                 <div className="row info">
                   <div className="col-3">Duration</div>
                   <div className="col-3">
-                    {this.state.mediaDetails.runtime}{" "}
-                    min
+                    {this.state.mediaDetails.runtime} min
                   </div>
                 </div>
               ) : null}
@@ -81,8 +81,8 @@ class SeeMoreDetails extends Component {
                   <ul className="list-unstyled">
                     {this.state.mediaDetails.spoken_languages !== undefined
                       ? this.state.mediaDetails.spoken_languages.map(
-                          (language) => {
-                            return <li> {language.english_name} </li>;
+                          (language, idx) => {
+                            return <li key={idx}> {language.english_name} </li>;
                           }
                         )
                       : null}
