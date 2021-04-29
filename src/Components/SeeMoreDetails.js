@@ -32,7 +32,7 @@ class SeeMoreDetails extends Component {
           `https://api.themoviedb.org/3/tv/${this.props.match.params.id}/credits?api_key=125c6992a7675d6c3e35696ea71a8c59`
         );
 
-        console.log(seriesCreditResponse.data.cast);
+        console.log(seriesResponse.data);
         this.setState({
           mediaDetails: { ...seriesResponse.data },
           cast: [...seriesCreditResponse.data.cast],
@@ -48,7 +48,7 @@ class SeeMoreDetails extends Component {
     return (
       <div className="container mt-5">
         <div className="row d-flex justify-content-evenly">
-          <div className="col-7">
+          <div className="col-8">
             <div>
               <h1 className="title">
                 <strong>
