@@ -117,7 +117,7 @@ class SeeMoreDetails extends Component {
           </div>
         </div>
         <div className="container mt-5">
-          <h3>Casting</h3>
+          <h3>Cast</h3>
           <div className="row d-flex justify-content-around">
           {this.state.cast.filter((c) => c.profile_path !== null).slice(0, 7).map((character) => {
               return (
