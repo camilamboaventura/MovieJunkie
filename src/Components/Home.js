@@ -124,9 +124,6 @@ class Home extends React.Component {
         }
         this.handleClose();
         break;
-      // case "delete":
-      //   this.handleDelete();
-      //   break;
     }
   };
 
