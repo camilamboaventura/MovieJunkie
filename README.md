@@ -14,7 +14,7 @@ When selecting the desired movie or series, the user has the option of adding it
 
 ## How was it built?
 
-This project was developed with vanilla JS, HTML and CSS, as part of the Ironhack Web Development bootcamp.
+This project was developed using React, React Router DOM, Axios and TMDB API, as part of the Ironhack Web Development bootcamp.
 
 
  
