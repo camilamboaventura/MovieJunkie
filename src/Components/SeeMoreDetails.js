@@ -31,8 +31,6 @@ class SeeMoreDetails extends Component {
         const seriesCreditResponse = await axios.get(
           `https://api.themoviedb.org/3/tv/${this.props.match.params.id}/credits?api_key=125c6992a7675d6c3e35696ea71a8c59`
         );
-
-        console.log(seriesResponse.data);
         this.setState({
           mediaDetails: { ...seriesResponse.data },
           cast: [...seriesCreditResponse.data.cast],
@@ -44,10 +42,16 @@ class SeeMoreDetails extends Component {
   };
 
   render() {
-    // console.log(this.state.cast)
     return (
-      <div className="container mt-5">
-        <div className="row d-flex justify-content-evenly">
+      <div className="container mt-5" style={{ paddingBottom: "100px" }}>
+        <div className="row d-flex justify-content-evenly seeMoreDetailsContainer">
+          <div className="col-4">
+            <img
+              className="image"
+              src={`https://image.tmdb.org/t/p/w500${this.state.mediaDetails.poster_path}`}
+              alt="poster"
+            ></img>
+          </div>
           <div className="col-8">
             <div>
               <h1 className="title">
@@ -87,7 +91,6 @@ class SeeMoreDetails extends Component {
                   </div>
                 </div>
               ) : null}
-             
 
               <div className="row info">
                 <h5 className="col-3">Movie score</h5>
@@ -110,14 +113,6 @@ class SeeMoreDetails extends Component {
                 </div>
               </div>
             </div>
-          </div>
-          <div className="col-4">
-            <img
-              className="image"
-              src={`https://image.tmdb.org/t/p/w500${this.state.mediaDetails.poster_path}`}
-              style={{ height: "600px" }}
-              alt="poster"
-            ></img>
           </div>
         </div>
         <div className="container mt-5">
