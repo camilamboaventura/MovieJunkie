@@ -9,7 +9,7 @@ function Navbar() {
       <div className="container-fluid">
         <Link className="navbar-brand" to="/" style={{ color: "white" }}>
           <img src={popCornPicture} className="logo-navbar" alt="Logo navbar" />{" "}
-          Home
+          MovieJunkie
         </Link>
       </div>
     </nav>

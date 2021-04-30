@@ -5,22 +5,25 @@ import popCornPicture from "../Images/Popcorn.png";
 
 function NavbarB4() {
   return (
-    <nav style={{ backgroundColor: "black" }} className="navbar navbar-light">
+    <nav
+      style={{ backgroundColor: "black" }}
+      className="navbar align-items-center"
+    >
       <div className="container-fluid">
         <Link className="navbar-brand" to="/" style={{ color: "white" }}>
           <img src={popCornPicture} className="logo-navbar" alt="Logo navbar" />{" "}
-          Home
+          MovieJunkie
         </Link>
         <div className="navbar-end">
           <div className="navbar-item">
-            <div className="d-flex field is-grouped">
+            <div className="d-flex">
               <p className="control">
-                <Link to="/login" className="bd-tw-button button is-dark">
+                <Link to="/login" className="btn btn-success">
                   <span>LogIn</span>
                 </Link>
               </p>
               <p className="control" style={{ marginLeft: "10px" }}>
-                <Link to="/signup" className="button is-success">
+                <Link to="/signup" className="btn btn-primary">
                   <span>SignUp</span>
                 </Link>
               </p>

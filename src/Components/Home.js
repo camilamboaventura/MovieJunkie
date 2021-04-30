@@ -202,13 +202,14 @@ class Home extends React.Component {
 
   render() {
     return (
-      <div className="container-fluid">
+      <div className="container-fluid" style={{ paddingBottom: "100px" }}>
         <div className="logo">
           <img src={logoPicture} className="logo-picture" alt="Logo" />
+          <h2>Movie Junkie</h2>
           {/* Search Input */}
           <SearchInput
             type="text"
-            placeHolder="Search title"
+            placeHolder="Search a title"
             ariaLabel="Text input search"
             name="search"
             value={this.state.search}
@@ -244,7 +245,7 @@ class Home extends React.Component {
             location="waitingNewSeasonList"
             contentList={this.state.waitingNewSeasonList}
             handleShow={this.handleShow}
-            listTitle="Waiting New Season"
+            listTitle="Waiting New Season and Currently Watching"
           />
           {/* Already watched List */}
           <MediasList

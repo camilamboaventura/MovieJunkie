@@ -6,6 +6,7 @@ import history from "../history";
 import Navbar from "./Navbar";
 import NavbarB4 from "./NavbarB4";
 import Home from "./Home";
+import Footer from "./Footer";
 import SeeMoreDetails from "./SeeMoreDetails";
 import LogInForm from "./LogInForm";
 import SignUpForm from "./SignUpForm";
@@ -37,17 +38,18 @@ class App extends React.Component {
             <Route exact path="/login">
               <LogInForm
                 handleLogIn={this.handleLogIn}
-                // history={this.props.history}
+                history={this.props.history}
               />
             </Route>
             <Route exact path="/signup">
               <SignUpForm
                 handleLogIn={this.handleLogIn}
-                // history={this.props.history}
+                history={this.props.history}
               />
             </Route>
             <Route path="/details/:location/:id" component={SeeMoreDetails} />
           </Switch>
+          <Footer />
         </Router>
       </div>
     );

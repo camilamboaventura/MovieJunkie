@@ -43,65 +43,47 @@ class LogInForm extends Component {
 
   render() {
     return (
-      <div className="container columns is-mobile mt-6">
-        <form
-          className="column is-half is-offset-one-quarter"
-          onSubmit={this.handleSubmit}
-        >
+      <div className="container d-flex justify-content-center mt-5">
+        <form onSubmit={this.handleSubmit}>
           {/* Username */}
-          <div className="field">
-            <label className="label">Username</label>
-
-            <div className="control has-icons-left has-icons-right">
-              <input
-                name="username"
-                className="input"
-                type="text"
-                placeholder="Choose your Username"
-                value={this.state.username}
-                onChange={this.handleChange}
-              />
-              <span className="icon is-small is-left">
-                <i className="fas fa-user"></i>
-              </span>
-            </div>
+          <div className="mb-3">
+            <label className="form-label">Username</label>
+            <input
+              name="username"
+              className="form-control"
+              type="text"
+              placeholder="Username"
+              value={this.state.username}
+              onChange={this.handleChange}
+            />
           </div>
           {/* Username */}
           {/* Password */}
-          <div className="field">
+          <div className="mb-4">
             <label className="label">Password</label>
-            <div className="control has-icons-left has-icons-right">
-              <input
-                name="password"
-                className="input"
-                type="password"
-                placeholder="password input"
-                value={this.state.password}
-                onChange={this.handleChange}
-              />
-              <span className="icon is-small is-left">
-                <i className="fas fa-lock"></i>
-              </span>
-            </div>
+            <input
+              name="password"
+              className="form-control"
+              type="password"
+              placeholder="Password"
+              value={this.state.password}
+              onChange={this.handleChange}
+            />
           </div>
           {/* Password */}
 
           {/* Buttons */}
 
-          <div className="field is-grouped">
-            <div className="control">
-              <button className="button is-link" type="submit">
-                Submit
-              </button>
-            </div>
-            <div className="control">
-              <button
-                onClick={this.handleCancelButton}
-                className="button is-link is-light"
-              >
-                Cancel
-              </button>
-            </div>
+          <div className="d-flex justify-content-around">
+            <button className="btn btn-success" type="submit">
+              Submit
+            </button>
+            <button
+              onClick={this.handleCancelButton}
+              className="btn btn-danger"
+            >
+              Cancel
+            </button>
           </div>
 
           {/* Buttons */}
