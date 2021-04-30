@@ -68,7 +68,7 @@ class SeeMoreDetails extends Component {
 
             <div className="container">
               <div className="row">
-                <div className="col-3">Genre</div>
+                <h5 className="col-3">Genre</h5>
                 <div className="col-3">
                   <ul className="list-unstyled">
                     {this.state.mediaDetails.genres !== undefined
@@ -81,27 +81,22 @@ class SeeMoreDetails extends Component {
               </div>
               {this.state.mediaDetails.runtime !== undefined ? (
                 <div className="row info">
-                  <div className="col-3">Duration</div>
+                  <h5 className="col-3">Duration</h5>
                   <div className="col-3">
                     {this.state.mediaDetails.runtime} min
                   </div>
                 </div>
               ) : null}
-              <div className="row info">
-                <div className="col-3">Movie score</div>
-                <div className="col-3">
-                  {this.state.mediaDetails.runtime} min
-                </div>
-              </div>
+             
 
               <div className="row info">
-                <div className="col-3">Movie score</div>
+                <h5 className="col-3">Movie score</h5>
                 <div className="col-3">
                   ★ {this.state.mediaDetails.vote_average}
                 </div>
               </div>
               <div className="row">
-                <div className="col-3">Audio languages</div>
+                <h5 className="col-3">Audio languages</h5>
                 <div className=" col-3">
                   <ul className="list-unstyled">
                     {this.state.mediaDetails.spoken_languages !== undefined
@@ -120,7 +115,7 @@ class SeeMoreDetails extends Component {
             <img
               className="image"
               src={`https://image.tmdb.org/t/p/w500${this.state.mediaDetails.poster_path}`}
-              style={{ height: "500px" }}
+              style={{ height: "600px" }}
               alt="poster"
             ></img>
           </div>
@@ -130,10 +125,10 @@ class SeeMoreDetails extends Component {
           <div className="row d-flex justify-content-around">
             {this.state.cast
               .filter((c) => c.profile_path !== null)
-              .slice(0, 7)
+              .slice(0, 8)
               .map((character, idx) => {
                 return (
-                  <div key={idx} className="card" style={{ width: "10rem" }}>
+                  <div key={idx} className="card" style={{ width: "8rem" }}>
                     <img
                       src={`https://image.tmdb.org/t/p/w500${character.profile_path}`}
                       className="card-img-top"
