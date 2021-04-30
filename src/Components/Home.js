@@ -12,7 +12,6 @@ class Home extends React.Component {
     search: "vikings",
     seriesList: [],
     moviesList: [],
-    genericList: [],
     toWatchList: [],
     watchedList: [],
     waitingNewSeasonList: [],
@@ -22,8 +21,46 @@ class Home extends React.Component {
   };
 
   //Provides the first request from the API in the first boot of the app
-  componentDidMount = () => {
+  componentDidMount = async () => {
+    if (this.props.match.params.id) {
+      try {
+        const response = await axios.get(
+          `https://ironrest.herokuapp.com/MovieJunkie/${this.props.match.params.id}`
+        );
+        this.setState({
+          toWatchList: [...response.data.toWatchList],
+          watchedList: [...response.data.watchedList],
+          waitingNewSeasonList: [...response.data.waitingNewSeasonList],
+        });
+      } catch (err) {
+        console.error(err);
+      }
+    }
     this.handleSubmit();
+  };
+
+  componentDidUpdate = async (prevProps, prevState) => {
+    if (
+      prevState.toWatchList.length !== this.state.toWatchList.length ||
+      prevState.watchedList.length !== this.state.watchedList.length ||
+      prevState.waitingNewSeasonList.length !==
+        this.state.waitingNewSeasonList.length
+    ) {
+      if (this.props.match.params.id) {
+        try {
+          await axios.put(
+            `https://ironrest.herokuapp.com/MovieJunkie/${this.props.match.params.id}`,
+            {
+              toWatchList: this.state.toWatchList,
+              watchedList: this.state.watchedList,
+              waitingNewSeasonList: this.state.waitingNewSeasonList,
+            }
+          );
+        } catch (err) {
+          console.error(err);
+        }
+      }
+    }
   };
 
   //Triggered by modifications in the search input, this method provides that the attribute search from the state keeps lined up with the value from the search input
@@ -165,13 +202,14 @@ class Home extends React.Component {
 
   render() {
     return (
-      <div className="container-fluid">
+      <div className="container-fluid" style={{ paddingBottom: "100px" }}>
         <div className="logo">
           <img src={logoPicture} className="logo-picture" alt="Logo" />
+          <h2>Movie Junkie</h2>
           {/* Search Input */}
           <SearchInput
             type="text"
-            placeHolder="Search title"
+            placeHolder="Search a title"
             ariaLabel="Text input search"
             name="search"
             value={this.state.search}
@@ -207,7 +245,7 @@ class Home extends React.Component {
             location="waitingNewSeasonList"
             contentList={this.state.waitingNewSeasonList}
             handleShow={this.handleShow}
-            listTitle="Waiting New Season"
+            listTitle="Waiting New Season and Currently Watching"
           />
           {/* Already watched List */}
           <MediasList
