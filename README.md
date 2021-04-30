@@ -3,7 +3,7 @@
 
 https://unruffled-agnesi-4779f5.netlify.app/
 
-## The application
+## About the application
 
 The application offers a catalog of films and series in which you can view information about them and create lists.
 
