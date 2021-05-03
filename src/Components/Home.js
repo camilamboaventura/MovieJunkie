@@ -22,10 +22,10 @@ class Home extends React.Component {
 
   //Provides the first request from the API in the first boot of the app
   componentDidMount = async () => {
-    if (this.props.match.params.id) {
+    if (this.props.match.params.userId) {
       try {
         const response = await axios.get(
-          `https://ironrest.herokuapp.com/MovieJunkie/${this.props.match.params.id}`
+          `https://ironrest.herokuapp.com/MovieJunkie/${this.props.match.params.userId}`
         );
         this.setState({
           toWatchList: [...response.data.toWatchList],
@@ -49,7 +49,7 @@ class Home extends React.Component {
       if (this.props.match.params.id) {
         try {
           await axios.put(
-            `https://ironrest.herokuapp.com/MovieJunkie/${this.props.match.params.id}`,
+            `https://ironrest.herokuapp.com/MovieJunkie/${this.props.match.params.userId}`,
             {
               toWatchList: this.state.toWatchList,
               watchedList: this.state.watchedList,
@@ -262,6 +262,7 @@ class Home extends React.Component {
           currentlySelected={this.state.currentlySelected}
           location={this.state.location}
           handleButtonModal={this.handleButtonModal}
+          userId={this.props.match.params.id}
         />
       </div>
     );
