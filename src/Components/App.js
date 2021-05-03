@@ -25,15 +25,26 @@ class App extends React.Component {
       <div className="App">
         <Router history={history}>
           {this.state.isLoggedIn ? (
-            <Route path="/:id" component={Navbar} />
+            <Switch>
+              <Route path="/:userId" component={Navbar} />
+              <Route path="/:userId/:whatever" component={Navbar} />
+            </Switch>
           ) : (
             <Route path="/" component={NavbarB4} />
           )}
           <Switch>
             {this.state.isLoggedIn ? (
-              <Route exact path="/:id" component={Home} />
+              <Route exact path="/:userId" component={Home} />
             ) : (
               <Route exact path="/" component={Home} />
+            )}
+            {this.state.isLoggedIn ? (
+              <Route
+                path="/:userId/details/:location/:id"
+                component={SeeMoreDetails}
+              />
+            ) : (
+              <Route path="/details/:location/:id" component={SeeMoreDetails} />
             )}
             <Route exact path="/login">
               <LogInForm
@@ -47,7 +58,6 @@ class App extends React.Component {
                 history={this.props.history}
               />
             </Route>
-            <Route path="/details/:location/:id" component={SeeMoreDetails} />
           </Switch>
           <Footer />
         </Router>
